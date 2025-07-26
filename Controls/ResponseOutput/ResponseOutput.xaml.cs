@@ -1,6 +1,6 @@
 using System.Windows.Controls;
 
-namespace Controls.ResponseOutput{
+namespace Controls{
     public partial class ResponseOutput : UserControl{
         public ResponseOutput(){
             InitializeComponent();

@@ -9,12 +9,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-using Controls.UrlInput;
-using Controls.MethodSelecter;
-using Controls.AuthInput;
-using Controls.HeaderInput;
-using Controls.BodyInput;
-using Controls.ResponseOutput;
+using Controls;
 using Models;
 using Services;
 

@@ -1,6 +1,6 @@
 using System.Windows.Controls;
 
-namespace Controls.UrlInput{
+namespace Controls{
     public partial class UrlInput : UserControl{
         public UrlInput(){
             InitializeComponent();

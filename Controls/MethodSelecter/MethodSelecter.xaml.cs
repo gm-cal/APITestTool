@@ -1,6 +1,6 @@
 using System.Windows.Controls;
 
-namespace Controls.MethodSelecter{
+namespace Controls{
     public partial class MethodSelecter : UserControl{
         public MethodSelecter(){
             InitializeComponent();

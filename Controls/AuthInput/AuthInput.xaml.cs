@@ -1,6 +1,6 @@
 using System.Windows.Controls;
 
-namespace Controls.AuthInput{
+namespace Controls{
     public partial class AuthInput : UserControl{
         public AuthInput(){
             InitializeComponent();

@@ -1,7 +1,7 @@
 using System.Windows.Controls;
 using Utils;
 
-namespace Controls.BodyInput{
+namespace Controls{
     public partial class BodyInput : UserControl{
         public BodyInput(){
             InitializeComponent();

@@ -3,7 +3,7 @@ using System.Text.Json;
 using System.Windows.Controls;
 using Utils;
 
-namespace Controls.HeaderInput{
+namespace Controls{
     public partial class HeaderInput : UserControl{
         public HeaderInput(){
             InitializeComponent();
