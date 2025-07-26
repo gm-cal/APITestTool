@@ -1,0 +1,16 @@
+<UserControl x:Class="Controls.MethodSelecter.MethodSelecter"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Height="Auto" Width="Auto">
+    <Grid Margin="10">
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="Method:" Width="60"/>
+            <ComboBox x:Name="MethodComboBox" Width="100">
+                <ComboBoxItem Content="GET"/>
+                <ComboBoxItem Content="POST"/>
+                <ComboBoxItem Content="PUT"/>
+                <ComboBoxItem Content="DELETE"/>
+            </ComboBox>
+        </StackPanel>
+    </Grid>
+</UserControl>

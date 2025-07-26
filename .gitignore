@@ -1,0 +1,5 @@
+obj/
+bin/
+log/
+api_log/
+save/
