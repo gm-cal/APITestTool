@@ -16,24 +16,23 @@ namespace Controls{
 
         private void LoadFolders(){
             Directory.CreateDirectory("api");
-            FolderComboBox.ItemsSource = Directory.GetDirectories("api").Select(Path.GetFileName);
+            FolderList.ItemsSource = Directory.GetDirectories("api").Select(Path.GetFileName);
         }
 
         private void RefreshButton_Click(object sender, RoutedEventArgs e){
             LoadFolders();
         }
-
-        private void FolderComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e){
+        private void FolderList_SelectionChanged(object sender, SelectionChangedEventArgs e){
             FileList.ItemsSource = null;
-            if(FolderComboBox.SelectedItem == null) return;
-            string folder = Path.Combine("api", FolderComboBox.SelectedItem.ToString()!);
+            if(FolderList.SelectedItem == null) return;
+            string folder = Path.Combine("api", FolderList.SelectedItem.ToString()!);
             var files = Directory.GetFiles(folder, "*.json").Select(Path.GetFileName);
             FileList.ItemsSource = files;
         }
 
         private async void TestAllButton_Click(object sender, RoutedEventArgs e){
-            if(FolderComboBox.SelectedItem == null) return;
-            string folder = Path.Combine("api", FolderComboBox.SelectedItem.ToString()!);
+            if(FolderList.SelectedItem == null) return;
+            string folder = Path.Combine("api", FolderList.SelectedItem.ToString()!);
             var files = Directory.GetFiles(folder, "*.json");
             int total = files.Length;
             int success = 0, fail = 0;

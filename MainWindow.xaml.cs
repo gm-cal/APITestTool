@@ -3,10 +3,11 @@ using System.Windows.Controls;
 using Controls;
 
 public partial class MainWindow : Window{
-    private int _tabCount = 1;
+    private int _tabCount = 0;
 
     public MainWindow(){
         InitializeComponent();
+        Loaded += (_, __) => AddRequestTab();
     }
 
     private void MenuAddTab_Click(object sender, RoutedEventArgs e){
@@ -37,7 +38,9 @@ public partial class MainWindow : Window{
         header.Children.Add(text);
         header.Children.Add(close);
         item.Header = header;
-        item.Content = new ApiRequestTab();
+        var tab = new ApiRequestTab();
+        tab.NameChanged += name => text.Text = name;
+        item.Content = tab;
         MainTabControl.Items.Insert(MainTabControl.Items.Count - 1, item);
         MainTabControl.SelectedItem = item;
     }

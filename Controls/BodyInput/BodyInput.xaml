@@ -5,7 +5,7 @@
     <Grid Margin="10">
         <StackPanel>
             <TextBlock Text="Body:"/>
-            <TextBox x:Name="BodyTextBox" Height="100" AcceptsReturn="True" VerticalScrollBarVisibility="Auto"/>
+            <TextBox x:Name="BodyTextBox" Height="100" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"/>
         </StackPanel>
     </Grid>
 </UserControl>
