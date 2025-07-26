@@ -33,7 +33,6 @@ namespace Controls{
                 main.StatusText.Text = "Sending...";
 
             var (response, status) = await _service.SendRequestAsync(setting);
-
             if(Utils.JsonUtils.TryFormatJson(response, out string formatted, out _))
                 ResponseOutputControl.Text = formatted;
             else
