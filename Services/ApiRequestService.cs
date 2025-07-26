@@ -3,6 +3,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Models;
 using System.IO;
+using System.Text.Json;
 
 namespace Services{
     public class ApiRequestService{
@@ -33,11 +34,23 @@ namespace Services{
                 try{
                     HttpResponseMessage res = await client.SendAsync(request);
                     string content = await res.Content.ReadAsStringAsync();
+                    Log(setting, (int)res.StatusCode, content);
                     return (content, (int)res.StatusCode);
                 } catch (Exception ex) {
+                    Log(setting, 0, $"Error: {ex.Message}");
                     return ($"Error: {ex.Message}", 0);
                 }
             }
+        }
+
+        private void Log(ApiSetting setting, int statusCode, string response){
+            Directory.CreateDirectory("api_log");
+            string name = string.IsNullOrWhiteSpace(setting.Name) ? "request" : setting.Name;
+            string file = DateTime.Now.ToString("yyyyMMdd_HHmmss") + $"_{name}.log";
+            string path = Path.Combine("api_log", file);
+            string headers = JsonSerializer.Serialize(setting.Headers);
+            string content = $"URL: {setting.Url}\nMethod: {setting.Method}\nStatus: {statusCode}\nHeaders: {headers}\nBody: {setting.Body}\nResponse: {response}";
+            File.WriteAllText(path, content);
         }
     }
 }

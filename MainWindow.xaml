@@ -13,6 +13,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
         <controls:UrlInput x:Name="UrlInputControl" Grid.Row="0" Margin="0,0,0,5"/>
         <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="0,0,0,5">
@@ -21,6 +22,7 @@
         </StackPanel>
         <controls:HeaderInput x:Name="HeaderInputControl" Grid.Row="2" Margin="0,0,0,5"/>
         <controls:BodyInput x:Name="BodyInputControl" Grid.Row="3" Margin="0,0,0,5"/>
-        <Button x:Name="SendButton" Grid.Row="4" Content="送信" Width="100" HorizontalAlignment="Right"/>
+        <Button x:Name="SendButton" Grid.Row="4" Content="送信" Width="100" HorizontalAlignment="Right" Click="SendButton_Click"/>
+        <controls:ResponseOutput x:Name="ResponseOutputControl" Grid.Row="5"/>
     </Grid>
 </Window>
