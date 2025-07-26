@@ -5,7 +5,7 @@
     <Grid Margin="10">
         <StackPanel>
             <TextBlock Text="Response:"/>
-            <TextBox x:Name="ResponseTextBox" Height="150" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" IsReadOnly="True" TextWrapping="Wrap"/>
+            <TextBox x:Name="ResponseTextBox" Height="150" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" IsReadOnly="True" TextWrapping="Wrap"/>
         </StackPanel>
     </Grid>
 </UserControl>

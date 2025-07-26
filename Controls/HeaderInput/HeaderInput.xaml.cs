@@ -1,26 +1,34 @@
 using System.Collections.Generic;
-using System.Text.Json;
+using System.Collections.ObjectModel;
 using System.Windows.Controls;
-using Utils;
 
 namespace Controls{
     public partial class HeaderInput : UserControl{
+        public class HeaderEntry{
+            public string Key{ get; set; } = string.Empty;
+            public string Value{ get; set; } = string.Empty;
+        }
+
+        public ObservableCollection<HeaderEntry> Headers{ get; } = new ObservableCollection<HeaderEntry>();
+
         public HeaderInput(){
             InitializeComponent();
+            HeaderGrid.ItemsSource = Headers;
+            Headers.Add(new HeaderEntry());
         }
+
         public bool TryGetHeaders(out Dictionary<string, string> headers, out string error){
             headers = new Dictionary<string, string>();
-            error = "";
-            if(string.IsNullOrWhiteSpace(HeadersTextBox.Text)) return true;
-            if(!JsonUtils.TryFormatJson(HeadersTextBox.Text, out string formatted, out error)) return false;
-            try{
-                headers = JsonSerializer.Deserialize<Dictionary<string, string>>(formatted) ?? new Dictionary<string, string>();
-                HeadersTextBox.Text = formatted;
-                return true;
-            }catch(JsonException ex){
-                error = ex.Message;
-                return false;
+            error = string.Empty;
+            foreach(var h in Headers){
+                if(string.IsNullOrWhiteSpace(h.Key)) continue;
+                if(headers.ContainsKey(h.Key)){
+                    error = $"Duplicate header: {h.Key}";
+                    return false;
+                }
+                headers[h.Key] = h.Value ?? string.Empty;
             }
+            return true;
         }
     }
 }

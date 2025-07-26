@@ -3,9 +3,14 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     Height="Auto" Width="Auto">
     <Grid Margin="10">
-        <StackPanel Orientation="Horizontal">
-            <TextBlock Text="Headers:" Width="60"/>
-            <TextBox x:Name="HeadersTextBox" Width="400" ToolTip="JSON形式で入力"/>
+        <StackPanel>
+            <TextBlock Text="Headers:" Margin="0,0,0,5"/>
+            <DataGrid x:Name="HeaderGrid" AutoGenerateColumns="False" CanUserAddRows="True" Height="100" HeadersVisibility="Column">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Name" Binding="{Binding Key}" Width="*"/>
+                    <DataGridTextColumn Header="Value" Binding="{Binding Value}" Width="2*"/>
+                </DataGrid.Columns>
+            </DataGrid>
         </StackPanel>
     </Grid>
 </UserControl>

@@ -1,48 +1,47 @@
-﻿using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-
 using Controls;
-using Models;
-using Services;
 
 public partial class MainWindow : Window{
-    private readonly ApiRequestService _service = new ApiRequestService();
+    private int _tabCount = 0;
 
     public MainWindow(){
         InitializeComponent();
+        Loaded += (_, __) => AddRequestTab();
     }
 
-    private async void SendButton_Click(object sender, RoutedEventArgs e){
-        if(!HeaderInputControl.TryGetHeaders(out var headers, out string hErr)){
-            MessageBox.Show($"Header Error: {hErr}");
-            return;
-        }
-        if(!BodyInputControl.TryGetBody(out var body, out string bErr)){
-            MessageBox.Show($"Body Error: {bErr}");
-            return;
-        }
+    private void MenuAddTab_Click(object sender, RoutedEventArgs e){
+        AddRequestTab();
+    }
 
-        ApiSetting setting = new ApiSetting{
-            Url = UrlInputControl.Url,
-            Method = MethodSelecterControl.Method,
-            Headers = headers,
-            Body = body,
-            AuthType = AuthInputControl.AuthType,
-            BearerTokenPath = AuthInputControl.TokenPath
-        };
+    private void MenuExit_Click(object sender, RoutedEventArgs e){
+        Close();
+    }
 
-        var (response, status) = await _service.SendRequestAsync(setting);
-        if(Utils.JsonUtils.TryFormatJson(response, out string formatted, out _))
-            ResponseOutputControl.Text = formatted;
-        else
-            ResponseOutputControl.Text = response;
+    private void MenuRunAll_Click(object sender, RoutedEventArgs e){
+        MainTabControl.SelectedIndex = 0; // TestAll tab assumed first
+    }
+
+    private void MainTabControl_SelectionChanged(object sender, SelectionChangedEventArgs e){
+        if(MainTabControl.SelectedItem == AddTabItem){
+            AddRequestTab();
+        }
+    }
+
+    private void AddRequestTab(){
+        _tabCount++;
+        TabItem item = new TabItem();
+        DockPanel header = new DockPanel();
+        TextBlock text = new TextBlock{ Text = $"Request{_tabCount}", Margin = new Thickness(0,0,5,0) };
+        Button close = new Button{ Content = "x", Padding = new Thickness(0), Width = 16, Height = 16 };
+        close.Click += (s, e) => MainTabControl.Items.Remove(item);
+        header.Children.Add(text);
+        header.Children.Add(close);
+        item.Header = header;
+        var tab = new ApiRequestTab();
+        tab.NameChanged += name => text.Text = name;
+        item.Content = tab;
+        MainTabControl.Items.Insert(MainTabControl.Items.Count - 1, item);
+        MainTabControl.SelectedItem = item;
     }
 }

@@ -1,0 +1,33 @@
+<UserControl x:Class="Controls.ApiRequestTab"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:Controls"
+    Height="Auto" Width="Auto">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" Grid.Row="0" Margin="0,0,0,5">
+            <TextBlock x:Name="NameLabel" Text="Request" VerticalAlignment="Center"/>
+            <Button x:Name="EditNameButton" Content="Edit" Width="40" Margin="5,0,0,0" Click="EditNameButton_Click"/>
+            <TextBox x:Name="NameTextBox" Width="200" Visibility="Collapsed" Margin="5,0,0,0"/>
+        </StackPanel>
+        <TextBox x:Name="MemoTextBox" Grid.Row="1" Height="40" TextWrapping="Wrap" Margin="0,0,0,5"/>
+        <controls:UrlInput x:Name="UrlInputControl" Grid.Row="2" Margin="0,0,0,5"/>
+        <StackPanel Orientation="Horizontal" Grid.Row="3" Margin="0,0,0,5">
+            <controls:MethodSelecter x:Name="MethodSelecterControl" Width="100"/>
+            <controls:AuthInput x:Name="AuthInputControl" Margin="10,0,0,0"/>
+        </StackPanel>
+        <controls:HeaderInput x:Name="HeaderInputControl" Grid.Row="4" Margin="0,0,0,5"/>
+        <controls:BodyInput x:Name="BodyInputControl" Grid.Row="5" Margin="0,0,0,5"/>
+        <Button x:Name="SendButton" Grid.Row="6" Content="送信" Width="100" HorizontalAlignment="Right" Click="SendButton_Click"/>
+        <controls:ResponseOutput x:Name="ResponseOutputControl" Grid.Row="7"/>
+    </Grid>
+</UserControl>
