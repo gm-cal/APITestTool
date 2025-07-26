@@ -3,20 +3,30 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d"
         xmlns:controls="clr-namespace:Controls"
+        mc:Ignorable="d"
         Title="APIテストツール" Height="600" Width="800">
     <DockPanel>
-        <Button x:Name="AddTabButton" Content="タブ追加" DockPanel.Dock="Top" Margin="5" Click="AddTabButton_Click"/>
-        <TabControl x:Name="MainTabControl">
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="_File">
+                <MenuItem Header="New Tab" Click="MenuAddTab_Click"/>
+                <MenuItem Header="Exit" Click="MenuExit_Click"/>
+            </MenuItem>
+            <MenuItem Header="_Run">
+                <MenuItem Header="Run All" Click="MenuRunAll_Click"/>
+            </MenuItem>
+        </Menu>
+        <StatusBar DockPanel.Dock="Bottom">
+            <TextBlock x:Name="StatusText" Text="Ready"/>
+        </StatusBar>
+        <TabControl x:Name="MainTabControl" SelectionChanged="MainTabControl_SelectionChanged">
             <TabItem Header="TestAll">
-                <StackPanel Margin="10">
-                    <TextBlock Text="全体実行機能は未実装です。"/>
-                </StackPanel>
+                <controls:TestAllTab/>
             </TabItem>
             <TabItem Header="Request1">
                 <controls:ApiRequestTab/>
             </TabItem>
+            <TabItem x:Name="AddTabItem" Header="+"/>
         </TabControl>
     </DockPanel>
 </Window>

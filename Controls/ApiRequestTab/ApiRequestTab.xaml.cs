@@ -29,11 +29,17 @@ namespace Controls{
                 BearerTokenPath = AuthInputControl.TokenPath
             };
 
+            if(Application.Current.MainWindow is MainWindow main)
+                main.StatusText.Text = "Sending...";
+
             var (response, status) = await _service.SendRequestAsync(setting);
             if(Utils.JsonUtils.TryFormatJson(response, out string formatted, out _))
                 ResponseOutputControl.Text = formatted;
             else
                 ResponseOutputControl.Text = response;
+
+            if(Application.Current.MainWindow is MainWindow main2)
+                main2.StatusText.Text = $"Status: {status}";
         }
     }
 }
