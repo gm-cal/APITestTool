@@ -7,29 +7,13 @@ using Services;
 namespace Controls{
     public partial class ApiRequestTab : UserControl{
         private readonly ApiRequestService _service = new ApiRequestService();
-        private bool _editingName;
-
-        public event Action<string>? NameChanged;
+        public event Action<string> ApiNameChanged{
+            add { NameInputControl.NameChanged += value; }
+            remove { NameInputControl.NameChanged -= value; }
+        }
 
         public ApiRequestTab(){
             InitializeComponent();
-        }
-
-        private void EditNameButton_Click(object sender, RoutedEventArgs e){
-            if(!_editingName){
-                NameTextBox.Text = NameLabel.Text;
-                NameLabel.Visibility = Visibility.Collapsed;
-                NameTextBox.Visibility = Visibility.Visible;
-                EditNameButton.Content = "Save";
-                _editingName = true;
-            }else{
-                NameLabel.Text = NameTextBox.Text;
-                NameLabel.Visibility = Visibility.Visible;
-                NameTextBox.Visibility = Visibility.Collapsed;
-                EditNameButton.Content = "Edit";
-                NameChanged?.Invoke(NameLabel.Text);
-                _editingName = false;
-            }
         }
 
         private async void SendButton_Click(object sender, RoutedEventArgs e){

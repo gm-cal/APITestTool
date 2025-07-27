@@ -1,0 +1,10 @@
+<UserControl x:Class="Controls.APINameInput"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Height="Auto" Width="Auto">
+        <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
+            <TextBlock x:Name="NameLabel" Text="Request" VerticalAlignment="Center"/>
+            <Button x:Name="EditNameButton" Content="Edit" Width="40" Margin="5,0,0,0" Click="EditNameButton_Click"/>
+            <TextBox x:Name="NameTextBox" Width="200" Visibility="Collapsed" Margin="5,0,0,0"/>
+        </StackPanel>
+</UserControl>
