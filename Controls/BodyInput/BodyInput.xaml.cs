@@ -6,6 +6,10 @@ namespace Controls{
         public BodyInput(){
             InitializeComponent();
         }
+        public string Text{
+            get => BodyTextBox.Text;
+            set => BodyTextBox.Text = value;
+        }
         public bool TryGetBody(out string body, out string error){
             body = string.Empty;
             error = string.Empty;
