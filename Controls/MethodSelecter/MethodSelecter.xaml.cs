@@ -9,5 +9,7 @@ namespace Controls{
         public string Method{
             get => ((ComboBoxItem)MethodComboBox.SelectedItem)?.Content?.ToString() ?? "GET";
         }
+
+        public string Text => Method;
     }
 }

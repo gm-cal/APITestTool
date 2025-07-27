@@ -9,5 +9,10 @@ namespace Controls{
             get => UrlTextBox.Text;
             set => UrlTextBox.Text = value;
         }
+
+        public string Text{
+            get => Url;
+            set => Url = value;
+        }
     }
 }

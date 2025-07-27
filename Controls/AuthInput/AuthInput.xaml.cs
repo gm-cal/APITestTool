@@ -13,5 +13,10 @@ namespace Controls{
             get => TokenPathTextBox.Text;
             set => TokenPathTextBox.Text = value;
         }
+
+        public string Text{
+            get => TokenPath;
+            set => TokenPath = value;
+        }
     }
 }

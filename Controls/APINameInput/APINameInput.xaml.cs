@@ -11,10 +11,15 @@ namespace Controls{
         public APINameInput(){
             InitializeComponent();
         }
-        
+
         public string APIName{
             get => ctrlNameTextBox.Text;
             set => ctrlNameTextBox.Text = value;
+        }
+
+        public string Text{
+            get => APIName;
+            set => APIName = value;
         }
         
         private void EditNameButton_Click(object sender, RoutedEventArgs e){
